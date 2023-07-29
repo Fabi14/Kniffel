@@ -7,6 +7,12 @@ struct BoundingBox
 {
 	Position leftUpperCorner{};
 	Position rightLowerCorner{};
+
+	bool isInside(Position pos) const
+	{
+		return leftUpperCorner.x < pos.x && rightLowerCorner.x > pos.x &&
+			leftUpperCorner.y < pos.y && rightLowerCorner.y > pos.y;
+	}
 };
 
 
