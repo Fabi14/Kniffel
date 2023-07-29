@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Kniffel.cpp" />
+    <ClCompile Include="KniffelGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KniffelGame.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
