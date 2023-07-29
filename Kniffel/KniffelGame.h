@@ -1,7 +1,7 @@
 #pragma once
 #include "olcPixelGameEngine.h"
 #include "Dice.h"
-
+#include <ranges>
 
 
 class KniffelGame : public olc::PixelGameEngine
@@ -26,7 +26,8 @@ public:
 	{
 		if (GetKey(olc::SPACE).bPressed)
 		{
-			for (auto& dice : m_arDice)
+			auto notSelected = [](const Dice& dice) { return !dice.isSelected(); };
+			for (auto& dice : m_arDice | std::views::filter(notSelected))
 			{
 				dice.roll();
 			}
@@ -36,6 +37,29 @@ public:
 		for (auto& dice : m_arDice)
 		{
 			dice.draw(*this);
+			if (dice.isSelected())
+			{
+				const auto bb = dice.getBoundingBox();
+				DrawRect(bb.leftUpperCorner - olc::vi2d{1, 1}, bb.rightLowerCorner - bb.leftUpperCorner + olc::vi2d{ 1, 1 }, olc::RED);
+			}
+		}
+
+		const auto mousePos = GetMousePos();
+		for (auto& dice : m_arDice)
+		{
+			const auto bb = dice.getBoundingBox();
+			if (bb.leftUpperCorner.x < mousePos.x && bb.rightLowerCorner.x > mousePos.x &&
+				bb.leftUpperCorner.y < mousePos.y && bb.rightLowerCorner.y > mousePos.y)
+			{
+				if (GetMouse(0).bPressed)
+				{
+					dice.select(!dice.isSelected());
+				}
+				else if(!dice.isSelected())
+				{
+					DrawRect(bb.leftUpperCorner - olc::vi2d{1, 1}, bb.rightLowerCorner - bb.leftUpperCorner + olc::vi2d{ 1, 1 }, olc::GREY);
+				}
+			}
 		}
 
 

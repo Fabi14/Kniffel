@@ -3,6 +3,8 @@
 
 namespace
 {
+	constexpr int diceSize = 40;
+
 	Position operator-(Position pos, int d)
 	{
 		return { pos.x - d,pos.y - d };
@@ -28,9 +30,24 @@ void Dice::roll()
 	m_value = getRandomDiceValue();
 }
 
+bool Dice::isSelected() const
+{
+	return m_selected;
+}
+
+void Dice::select(bool isSelected)
+{
+	m_selected = isSelected;
+}
+
+BoundingBox Dice::getBoundingBox()
+{
+	return BoundingBox({m_pos - 0.5 * diceSize }, { m_pos + 0.5 * diceSize });
+}
+
 void Dice::drawDice(DiceValue number, Position pos, olc::PixelGameEngine& engine)
 {
-	constexpr int diceSize = 40;
+
 	constexpr int c_dotSizeRadius = 2;
 
 	engine.FillRect(pos - diceSize / 2, { diceSize, diceSize });

@@ -3,6 +3,11 @@
 
 using Position = olc::vi2d;
 
+struct BoundingBox
+{
+	Position leftUpperCorner{};
+	Position rightLowerCorner{};
+};
 
 
 class Dice
@@ -12,6 +17,11 @@ public:
 
 	void draw(olc::PixelGameEngine& engine);
 	void roll();
+	bool isSelected() const;
+	void select(bool isSelected = true);
+
+	BoundingBox getBoundingBox();
+	
 
 	enum class DiceValue
 	{
@@ -29,5 +39,6 @@ private:
 
 	Position m_pos{};
 	DiceValue m_value{ getRandomDiceValue()};
+	bool m_selected{ false };
 };
 
