@@ -22,25 +22,64 @@ void KniffelGame::drawDice(DiceValue number, Position pos)
 
 	FillRect(pos - diceSize / 2, { diceSize, diceSize });
 
+	auto drawOne = [this,&pos] {
+		FillCircle(pos, c_dotSizeRadius, olc::BLACK);
+	};
+	auto drawTwo = [this, &pos] {
+		FillCircle(pos - 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos + 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+	};
+
+	auto drawFour = [this, &pos] {
+		FillCircle(pos - 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{0.2, -0.2} *diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos + 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{-0.2, 0.2} *diceSize, c_dotSizeRadius, olc::BLACK);
+	};
+
+	auto drawSix = [this, &pos] {
+		FillCircle(pos - 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{0.2, -0.2} *diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{0.2, 0.} *diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos + 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{-0.2, 0.2} *diceSize, c_dotSizeRadius, olc::BLACK);
+		FillCircle(pos - olc::vd2d{-0.2, 0.} *diceSize, c_dotSizeRadius, olc::BLACK);
+	};
+
 	switch (number)
 	{
 		using enum DiceValue;
 		case one : 
 		{
-			FillCircle(pos, c_dotSizeRadius, olc::BLACK);
+			drawOne();
 			break;
 		}
 		case two:
 		{
-			FillCircle(pos - 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
-			FillCircle(pos + 0.2 * diceSize, c_dotSizeRadius, olc::BLACK);
+			drawTwo();
 			break;
 		}
-
+		case three:
+		{
+			drawOne();
+			drawTwo();
+			break;
+		}
+		case four:
+		{
+			drawFour();
+			break;
+		}
+		case five:
+		{
+			drawFour();
+			drawOne();
+			break;
+		}
+		case six:
+		{
+			drawSix();
+			break;
+		}
 	}
-
-
-
-
-
 }
