@@ -28,6 +28,7 @@ public:
 			rollDice();
 		}
 		drawGame();
+		DrawString({ 20,230 }, "-- Leertaste zum Wuerfeln --");
 
 		handleMouseInput();
 
