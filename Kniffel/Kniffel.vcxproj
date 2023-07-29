@@ -129,10 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Kniffel.cpp" />
     <ClCompile Include="KniffelGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dice.h" />
     <ClInclude Include="KniffelGame.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
   </ItemGroup>

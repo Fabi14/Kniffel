@@ -21,12 +21,18 @@
     <ClCompile Include="KniffelGame.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Dice.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="olcPixelGameEngine.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="KniffelGame.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Dice.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
