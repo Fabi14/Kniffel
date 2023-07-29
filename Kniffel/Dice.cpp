@@ -27,6 +27,7 @@ void Dice::draw(olc::PixelGameEngine& engine)
 
 void Dice::roll()
 {
+	m_clear = false;
 	m_value = getRandomDiceValue();
 }
 
@@ -51,7 +52,10 @@ void Dice::drawDice(DiceValue number, Position pos, olc::PixelGameEngine& engine
 	constexpr int c_dotSizeRadius = 2;
 
 	engine.FillRect(pos - diceSize / 2, { diceSize, diceSize });
-
+	if (m_clear)
+	{
+		return;
+	}
 	auto drawOne = [&engine, &pos] {
 		engine.FillCircle(pos, c_dotSizeRadius, olc::BLACK);
 	};

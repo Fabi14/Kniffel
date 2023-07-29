@@ -19,7 +19,17 @@ public:
 	void roll();
 	bool isSelected() const;
 	void select(bool isSelected = true);
+	void clear()
+	{
+		m_clear = true;
+	}
 
+	int getPoints() const
+	{
+		if (m_clear)
+			return 0;
+		return static_cast<int>(m_value);
+	}
 	BoundingBox getBoundingBox();
 	
 
@@ -40,5 +50,6 @@ private:
 	Position m_pos{};
 	DiceValue m_value{ getRandomDiceValue()};
 	bool m_selected{ false };
+	bool m_clear{ true };
 };
 
