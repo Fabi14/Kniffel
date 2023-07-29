@@ -23,6 +23,7 @@ public:
 	{
 		Clear({ 53,101,77 });
 		drawDice(DiceValue::one, { 70,70 });
+		drawDice(DiceValue::two, { 120,70 });
 
 		return true;
 	}
