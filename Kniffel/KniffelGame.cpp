@@ -83,3 +83,9 @@ void KniffelGame::drawDice(DiceValue number, Position pos)
 		}
 	}
 }
+
+auto KniffelGame::getRandomDiceValue() -> DiceValue
+{
+	int x = 1 + std::rand() / ((RAND_MAX + 1u) / 6);
+	return DiceValue(x);
+}

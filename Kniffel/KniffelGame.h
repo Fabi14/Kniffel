@@ -15,12 +15,9 @@ public:
 public:
 	bool OnUserCreate() override
 	{
-		// Called once at the start, so create things here
-		return true;
-	}
+		const auto now = std::time(nullptr);
+		std::srand(now);
 
-	bool OnUserUpdate(float fElapsedTime) override
-	{
 		Clear({ 53,101,77 });
 		drawDice(DiceValue::one, { 30,50 });
 		drawDice(DiceValue::two, { 80,50 });
@@ -32,10 +29,25 @@ public:
 		return true;
 	}
 
+	bool OnUserUpdate(float fElapsedTime) override
+	{
+		if (GetKey(olc::SPACE).bPressed)
+		{
+			Clear({ 53,101,77 });
+			drawDice(getRandomDiceValue(), { 30,50 });
+			drawDice(getRandomDiceValue(), { 80,50 });
+			drawDice(getRandomDiceValue(), { 130,50 });
+			drawDice(getRandomDiceValue(), { 180,50 });
+			drawDice(getRandomDiceValue(), { 230,50 });
+
+		}
+		return true;
+	}
+
 private:
 	enum class DiceValue
 	{
-		one,
+		one=1,
 		two,
 		three,
 		four,
@@ -45,4 +57,5 @@ private:
 
 
 	void drawDice(DiceValue number, Position pos);
+	DiceValue getRandomDiceValue();
 };
