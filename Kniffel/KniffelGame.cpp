@@ -1,9 +1,21 @@
 #include "KniffelGame.h"
 
-void KniffelGame::drawDice(short number)
-{
-	constexpr int c_dotSizeRadius = 2;
-	FillRect({ 50,50 }, { 40,40 });
-	FillCircle({ 70,70 }, c_dotSizeRadius, olc::BLACK);
 
+
+namespace
+{
+	Position operator-(Position pos, int d)
+	{
+		return { pos.x - d,pos.y - d };
+	}
+}
+
+
+void KniffelGame::drawDice(DiceValue number, Position pos)
+{
+	constexpr int diceSize = 40;
+	constexpr int c_dotSizeRadius = 2;
+
+	FillRect(pos - diceSize/2, { diceSize, diceSize });
+	FillCircle(pos, c_dotSizeRadius, olc::BLACK);
 }

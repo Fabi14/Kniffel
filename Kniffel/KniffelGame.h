@@ -1,6 +1,8 @@
 #pragma once
 #include "olcPixelGameEngine.h"
 
+using Position = olc::vi2d;
+
 class KniffelGame : public olc::PixelGameEngine
 {
 public:
@@ -20,11 +22,22 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override
 	{
 		Clear({ 53,101,77 });
-		drawDice(1);
+		drawDice(DiceValue::one, { 70,70 });
 
 		return true;
 	}
 
 private:
-	void drawDice(short number);
+	enum class DiceValue
+	{
+		one,
+		two,
+		three,
+		four,
+		five,
+		six
+	};
+
+
+	void drawDice(DiceValue number, Position pos);
 };
